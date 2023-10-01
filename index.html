@@ -1,28 +1,94 @@
 <!DOCTYPE html>
 <html>
  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Medhya's Portfolio</title>
    <link rel="stylesheet" href="css/styles.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
  </head>
  <body>
-   <nav>
-     <ul>
-       <li><a href=”/”>Home</a></li>
-       <li><a href=”/about”>About</a></li>
-       <li><a href=”/resume”>Resume</a></li>
-       <li><a href=”/blog”>Blog</a></li>
-     </ul>
-   </nav>
-   <div class=”container”>
-     <div class=”blurb”>
-       <h1>Hi, I am Medhya Goel!</h1>
-       <p>This is my first page for my personal website!</a></p>
+  <header>
+    <nav>
+        <ul class="social-icons">
+            <li><a href="mailto:medhya@stanford.edu"><i class="fa fa-envelope"></i></a></li>
+            <li><a href="https://github.com/medhyaGoel"><i class="fa-brands fa-github"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/medhyagoel"><i class="fa-brands fa-linkedin"></i></a></li>
+        </ul>
+    </nav>
+</header>
+
+  <nav>
+    <ul>
+        <li><a href="#section1">Home</a></li>
+        <li><a href="#section2">About</a></li>
+        <!-- link to resume, current interests broad, interesting news articles -->
+        <li><a href="#section3">Projects</a></li>
+        <!-- my own linktree -->
+        <li><a href="#section4">Writing</a></li>
+        <!-- software efforts -->
+    </ul>
+</nav>
+  <section id="section1">
+     <div class=”container”>
+       <div class=”blurb”>
+         <h1>Medhya Goel</h1>
+         <p>CS & International Relations @ Stanford!</a></p>
+       </div>
      </div>
-   </div>
+  </section>
+
+<section id="section2">
+  <h1>About me</h1>
+  <div class="pdf-button">
+    <a href="pdfs/resume.pdf" target="_blank"> Resume</a>
+</div>
+  <p>Hi! I'm Medhya. I'm currently studying Computer Science and International Relations at Stanford University. </p>
+
+  <p>I'm super interested in the intersection of technology and governance-- I love thinking about everything from public 
+    interest technology to how our foreign policy should adapt to the digital world. </p>
+  <p>Some of my favorite things that I've worked on: </p>
+      <p> ** Investigative Journalism</p>
+      <p> ** LegalTech</p>
+      <p> ** Learning about deterrence theory-- especially as applicable to strategic weapons systems. </p>
+  <p>This is what I'm currently exploring: </p>
+    <p> ** International security </p>
+    <p> ** cybersecurity </p>
+    <p> ** start-ups </p>
+    <p> ** application development </p> 
+  <p> Reach out if you want to chat about any of the above or anything else &#128578! </p>
+  
+</section>
+
+<section id="section3">
+  <h1>Software Projects</h1>
+  <p>Under construction &#128578</p>
+</section>
+
+<section id="section4">  
+  <h1>Writing Portfolio</h1>
+  <p>Under construction &#128578: For now, check it out at <a href="https://linktr.ee/medhyawrites">https://linktr.ee/medhyawrites</a></p>
+</section>
+
+
+
    <footer>
    <ul>
      <li><a href=”mailto:medhya@stanford.edu”>medhya[@]stanford.edu</a></li>
    </ul>
    </footer>
+
+   <script>
+      // Add smooth scrolling to anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              e.preventDefault();
+
+              document.querySelector(this.getAttribute('href')).scrollIntoView({
+                  behavior: 'smooth'
+              });
+          });
+      });
+</script>
  </body>
 </html>
