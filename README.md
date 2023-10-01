@@ -1,4 +1,4 @@
-### Hi there 👋
+### Portfolio website :)
 
 <!--
 **medhyaGoel/medhyaGoel** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
@@ -14,5 +14,5 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
-Testing! This is my first public static website, created without any editor like Weebly, etc. Here's the link: https://medhyagoel.github.io/
+Static website, created without any editor like Weebly, etc. Here's the link: https://medhyagoel.github.io/
 
