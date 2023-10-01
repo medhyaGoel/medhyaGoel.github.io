@@ -116,7 +116,7 @@ header {
   }
 
   .image-with-text img {
-    max-height: 100px; /* Adjust the image width as needed */
-    max-width: 100px;
+    height: 100px; /* Adjust the image width as needed */
+        width: 100px;
     margin-right: 40px; /* Add some spacing between the image and text */
   }
