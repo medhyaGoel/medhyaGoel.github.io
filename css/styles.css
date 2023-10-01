@@ -1,20 +1,21 @@
 body {
     margin: 60px auto;
-    width: 70%;
+    margin-top: 10px;
+    width: 80%;
     background-color: #33E0FF;
 }
-nav ul, footer ul {
+nav ul{
     font-family:'Courier';
     padding: 0px;
     list-style: none;
     font-weight: bold;
+    font-size: small;
 }
-nav ul li, footer ul li {
+nav ul li {
     display: inline;
     margin-right: 20px;
 }
 a {
-    text-decoration: none;
     color: black;
 }
 a:hover {
@@ -24,15 +25,11 @@ h1 {
     font-size: 3em;
     font-family:'Courier';
 }
-p {
+p, li {
     font-size: 1.5em;
     line-height: 1.4em;
     color: #333;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-footer {
-    border-top: 1px solid #d5d5d5;
-    font-size: .8em;
 }
 
 ul.posts { 
@@ -51,7 +48,7 @@ ul.posts li {
 }
 
 /* Style anchor links */
-.social-icons a {
+.social-icons a, .menus a{
     color: black; /* Text color for icons (white) */
     text-decoration: none;
     font-size: 24px; /* Adjust icon size */
@@ -61,7 +58,7 @@ ul.posts li {
     display: inline-block;
     width: 200px; /* Adjust the width as needed for a rectangular shape */
     height: 50px; /* Adjust the height as needed */
-    background-color: #C22ff6; /* Button background color */
+    background-color: #1c6bff; /* Button background color */
     color: #fff; /* Text color */
     text-align: center;
     line-height: 50px; /* Vertically center text */
@@ -72,17 +69,54 @@ ul.posts li {
     cursor: pointer;
 }
 
-.pdf-button a {
+.pdf-button a, .back-to-top a {
     color: #fff; /* Text color for the link */
     text-decoration: none; /* Remove underline from the link */
 }
 
-.pdf-button:hover {
-    background-color: #7025BE; /* Hover color */
+.pdf-button:hover, .back-to-top:hover {
+    background-color: #022a75; /* Hover color */
 }
 
-.inline-list {
-    list-style-type: disc; /* Bullet style */
-    padding-left: 20px; /* Adjust as needed for indentation */
-    display: inline;
+.introTitle {
+    font-size: 30vh;
+    margin-top: 0;
+    margin-bottom: 0;
 }
+
+header {
+    text-align: right; /* Right-align text within the header */
+    display: flex; /* Use flexbox to align items horizontally */
+    justify-content: flex-end; /* Align items to the flex-end (right) */
+}
+
+.sectionHeader {
+    display: flex; /* Use flexbox to control alignment */
+    align-items: center; /* Vertically center elements */   
+}
+
+.back-to-top {
+    display: inline-block;
+    background-color: #1c6bff; /* Button background color */
+    color: #fff; /* Text color */
+    text-align: center;
+    text-decoration: none; /* Remove underline from the link */
+    font-family: monospace;
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer;
+    margin: 20px; 
+    border: none;
+    font-size: 3em;
+    line-height: 45px;
+}
+
+.image-with-text {
+    display: flex;
+    align-items: center;
+  }
+
+  .image-with-text img {
+    max-height: 100px; /* Adjust the image width as needed */
+    max-width: 100px;
+    margin-right: 40px; /* Add some spacing between the image and text */
+  }
