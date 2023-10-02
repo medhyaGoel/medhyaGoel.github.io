@@ -14,5 +14,5 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
-Static website, created without any editor like Weebly, etc. Here's the link: https://medhyagoel.github.io/
+Static website, created from scratch without any editor like Weebly, etc. Here's the link: https://medhyagoel.github.io/
 
