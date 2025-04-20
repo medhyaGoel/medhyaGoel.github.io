@@ -4,6 +4,8 @@ import {Github, Linkedin} from 'lucide-react';
 import {motion} from 'framer-motion';
 import {useState, useRef, useEffect} from 'react';
 
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from '@/components/ui/accordion';
+
 function Card({children}: {children: React.ReactNode}) {
   return <div className="border rounded-md bg-white">{children}</div>;
 }
@@ -45,7 +47,12 @@ export default function HomePage() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const sortedEvents = [...timelineEvents];
+  const sortedEvents = [...timelineEvents].sort((a, b) => {
+    const yearA = a.year || a.start || 0;
+    const yearB = b.year || b.start || 0;
+    return yearB - yearA; // Sort in descending order
+  });
+
   const yearSpacing = 80;
 
   return (
@@ -71,62 +78,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="flex space-x-8">
-        <div className="relative flex flex-col items-start pl-4" style={{minHeight: `${(2025 - 2022 + 1) * yearSpacing}px`}}>
-          <div className="absolute left-[7px] top-0 bottom-0 w-px bg-gray-300" />
-          {sortedEvents.filter(e => e.start && e.end).map((event, i) => (
-            <div
-              key={i}
-              className="absolute left-[6px] w-px"
-              style={{
-                top: `${(event.start - 2022) * yearSpacing + 8}px`,
-                height: `${(event.end - event.start) * yearSpacing}px`,
-                backgroundColor: event.color === 'green-500' ? '#22c55e' : event.color === 'blue-500' ? '#3b82f6' : event.color === 'red-500' ? '#ef4444' : '#000',
-              }}
-            />
-          ))}
-          <div className="z-10">
-            {[2025, 2024, 2023, 2022].map((year) => (
-              <div key={year} className="relative" style={{height: `${yearSpacing}px`}}>
-                <div className="absolute left-[-50px] top-[8px] text-xs text-gray-400 w-12 text-right">{year}</div>
-                {sortedEvents.filter(e => (e.year === year || e.start === year)).map((event, index) => (
-                  <div key={index} className="relative flex items-center space-x-3 pl-4">
-                    <motion.div
-                      className="w-4 h-4 rounded-full z-20 cursor-pointer hover:scale-110 transition-transform" style={{backgroundColor: event.color === 'green-500' ? '#22c55e' : event.color === 'blue-500' ? '#3b82f6' : event.color === 'red-500' ? '#ef4444' : '#000'}}
-                      onClick={() => handleClick(event.id)}
-                      onMouseEnter={() => setHoveredEvent(event)}
-                      onMouseLeave={() => setHoveredEvent(null)}
-                    />
-                    <div className="text-sm text-gray-700 font-medium">{event.title}</div>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex-1 max-h-[500px] overflow-y-auto space-y-6 pr-2">
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold">Timeline</h2>
+        <Accordion type="single" collapsible className="w-full">
           {sortedEvents.map(event => (
-            <div
-              key={event.id}
-              ref={el => projectRefs.current[event.id] = el}
-              className={`transition-all duration-300 cursor-pointer ${expandedId === event.id ? 'bg-opacity-10 p-4 rounded-lg shadow' : ''}`}
-              onClick={() => handleClick(event.id)}
-            >
-              <Card>
-                <CardContent className="p-4 space-y-2">
-                  <h3 className="text-lg font-medium">{event.title}</h3>
-                  <p className="text-sm text-gray-700">{event.description}</p>
-                  <a
-                    className="text-sm text-blue-600 hover:underline"
-                    href={`https://github.com/medhya-goel/${event.id}`}
-                    target="_blank" rel="noopener noreferrer"
-                  >View on GitHub</a>
-                </CardContent>
-              </Card>
-            </div>
+            <AccordionItem key={event.id} value={event.id}>
+              <AccordionTrigger className="text-lg">{event.title}</AccordionTrigger>
+              <AccordionContent>
+                <p className="text-sm text-gray-700">{event.description}</p>
+                {event.year ? (
+                  <p className="text-sm text-gray-500">Year: {event.year}</p>
+                ) : (
+                  <p className="text-sm text-gray-500">
+                    {event.start} - {event.end}
+                  </p>
+                )}
+                <a
+                  className="text-sm text-blue-600 hover:underline"
+                  href={`https://github.com/medhya-goel/${event.id}`}
+                  target="_blank" rel="noopener noreferrer"
+                >
+                  View on GitHub
+                </a>
+              </AccordionContent>
+            </AccordionItem>
           ))}
-        </div>
+        </Accordion>
       </section>
 
       <section className="space-y-6">
