@@ -4,17 +4,58 @@ import {Github, Linkedin} from 'lucide-react';
 import {motion} from 'framer-motion';
 import {useState, useRef, useEffect} from 'react';
 
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from '@/components/ui/accordion';
 import {Card, CardContent} from '@/components/ui/card';
 import {Button} from '@/components/ui/button';
 import {ScrollArea} from '@/components/ui/scroll-area';
 
 const timelineEvents = [
-  {id: 'policy', year: 2025, category: 'Government', color: 'green-500', title: 'AI Policy Research', description: 'AI policy research at [X]'},
-  {id: 'hackathon', year: 2024, category: 'Other', color: 'red-500', title: 'Evacuation Route Planner', description: 'AI hackathons and consumer tools'},
-  {id: 'lab', start: 2023, end: 2024, category: 'LegalTech', color: 'blue-500', title: 'Public Interest Tech Lab', description: 'Co-founded Public Interest Tech Lab'},
-  {id: 'cisa', year: 2023, category: 'Government', color: 'green-500', title: 'CISA Cybersecurity', description: 'Cybersecurity work at CISA'},
-  {id: 'sbom', year: 2022, category: 'LegalTech', color: 'blue-500', title: 'GitHub SBOM', description: 'Interned at XYZ Legal AI'},
+  {
+    id: 'policy',
+    year: 2025,
+    month: 'Jan',
+    category: 'Government',
+    color: 'green-500',
+    title: 'AI Policy Research',
+    description: 'AI policy research at [X]',
+  },
+  {
+    id: 'hackathon',
+    year: 2024,
+    month: 'Dec',
+    category: 'Other',
+    color: 'red-500',
+    title: 'Evacuation Route Planner',
+    description: 'AI hackathons and consumer tools',
+  },
+  {
+    id: 'lab',
+    startYear: 2023,
+    startMonth: 'Jun',
+    endYear: 2024,
+    endMonth: 'Dec',
+    category: 'LegalTech',
+    color: 'blue-500',
+    title: 'Public Interest Tech Lab',
+    description: 'Co-founded Public Interest Tech Lab',
+  },
+  {
+    id: 'cisa',
+    year: 2023,
+    month: 'Jan',
+    category: 'Government',
+    color: 'green-500',
+    title: 'CISA Cybersecurity',
+    description: 'Cybersecurity work at CISA',
+  },
+  {
+    id: 'sbom',
+    year: 2022,
+    month: 'Jun',
+    category: 'LegalTech',
+    color: 'blue-500',
+    title: 'GitHub SBOM',
+    description: 'Interned at XYZ Legal AI',
+  },
 ];
 
 export default function HomePage() {
@@ -41,10 +82,19 @@ export default function HomePage() {
   }, []);
 
   const sortedEvents = [...timelineEvents].sort((a, b) => {
-    const yearA = a.year || a.start || 0;
-    const yearB = b.year || b.start || 0;
+    const yearA = a.year || a.startYear || 0;
+    const yearB = b.year || b.startYear || 0;
     return yearB - yearA; // Sort in descending order
   });
+
+  const getTimelineLabel = (event: any) => {
+    if (event.year && event.month) {
+      return `${event.month}, ${event.year}`;
+    } else if (event.startYear && event.startMonth && event.endYear && event.endMonth) {
+      return `${event.startMonth}, ${event.startYear} - ${event.endMonth}, ${event.endYear}`;
+    }
+    return 'Unknown Date';
+  };
 
   return (
     <main className="min-h-screen bg-[#fdfcf7] text-[#3a3a3a] font-serif px-6 py-12 md:px-20 max-w-6xl mx-auto space-y-16">
@@ -71,17 +121,32 @@ export default function HomePage() {
 
       <section className="flex space-x-8">
         {/* Timeline Section */}
-        <div className="-my-6 w-2/3">
-          {sortedEvents.map((event, index) => (
-            <div key={index} className="relative pl-8 sm:pl-32 py-6 group">
-              <div className="font-caveat font-medium text-2xl" style={{color: event.color}}>{event.category}</div>
-              <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-border sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:border-4 after:box-content after:border-[#fdfcf7] after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5" style={{backgroundColor: event.color}}>
-                <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-20 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">{event.year || `${event.start} - ${event.end}`}</time>
-                <div className="text-xl font-bold text-slate-900">{event.title}</div>
-              </div>
-              <div className="text-slate-500">{event.description}</div>
-            </div>
-          ))}
+        <div className="w-2/3">
+          <div className="relative">
+            <div className="absolute left-4 top-0 h-full w-0.5 bg-gray-300" />
+            <ul className="space-y-4">
+              {sortedEvents.map((event, index) => (
+                <li key={index} className="ml-12 relative">
+                  <div className="flex items-center mb-1">
+                    <div className="absolute left-[-40px] top-0 text-sm text-gray-500">
+                      {getTimelineLabel(event)}
+                    </div>
+                    <motion.div
+                      className="z-10 w-3 h-3 bg-gray-700 rounded-full absolute left-[-4px]"
+                    />
+                    <button
+                      className="font-semibold text-gray-800 hover:text-blue-500 focus:outline-none"
+                      onClick={() => handleClick(event.id)}
+                      onMouseEnter={() => setHoveredEvent(event)}
+                      onMouseLeave={() => setHoveredEvent(null)}
+                    >
+                      {event.title}
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Project Showcase */}
