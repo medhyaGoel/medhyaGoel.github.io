@@ -7,6 +7,7 @@ import {useState, useRef, useEffect} from 'react';
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from '@/components/ui/accordion';
 import {Card, CardContent} from '@/components/ui/card';
 import {Button} from '@/components/ui/button';
+import {ScrollArea} from '@/components/ui/scroll-area';
 
 const timelineEvents = [
   {id: 'policy', year: 2025, category: 'Government', color: 'green-500', title: 'AI Policy Research', description: 'AI policy research at [X]'},
@@ -84,27 +85,29 @@ export default function HomePage() {
         </div>
 
         {/* Project Showcase */}
-        <div className="flex-1 max-h-[500px] overflow-y-auto space-y-6 pr-2">
-          {sortedEvents.map(event => (
-            <div
-              key={event.id}
-              ref={el => projectRefs.current[event.id] = el}
-              className={`transition-all duration-300 cursor-pointer ${expandedId === event.id ? 'bg-opacity-10 p-4 rounded-lg shadow' : ''}`}
-              onClick={() => handleClick(event.id)}
-            >
-              <Card>
-                <CardContent className="p-4 space-y-2">
-                  <h3 className="text-lg font-medium">{event.title}</h3>
-                  <p className="text-sm text-muted-foreground">{event.description}</p>
-                  <a
-                    className="text-sm text-blue-600 hover:underline"
-                    href={`https://github.com/medhya-goel/${event.id}`}
-                    target="_blank" rel="noopener noreferrer"
-                  >View on GitHub</a>
-                </CardContent>
-              </Card>
-            </div>
-          ))}
+        <div className="flex-1 max-h-[500px] space-y-6 pr-2">
+          <ScrollArea className="h-full">
+            {sortedEvents.map(event => (
+              <div
+                key={event.id}
+                ref={el => projectRefs.current[event.id] = el}
+                className={`transition-all duration-300 cursor-pointer ${expandedId === event.id ? 'bg-opacity-10 p-4 rounded-lg shadow' : ''}`}
+                onClick={() => handleClick(event.id)}
+              >
+                <Card>
+                  <CardContent className="p-4 space-y-2">
+                    <h3 className="text-lg font-medium">{event.title}</h3>
+                    <p className="text-sm text-muted-foreground">{event.description}</p>
+                    <a
+                      className="text-sm text-blue-600 hover:underline"
+                      href={`https://github.com/medhya-goel/${event.id}`}
+                      target="_blank" rel="noopener noreferrer"
+                    >View on GitHub</a>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </ScrollArea>
         </div>
       </section>
 
