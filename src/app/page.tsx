@@ -5,16 +5,8 @@ import {motion} from 'framer-motion';
 import {useState, useRef, useEffect} from 'react';
 
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from '@/components/ui/accordion';
-
-function Card({children}: {children: React.ReactNode}) {
-  return <div className="border rounded-md bg-white">{children}</div>;
-}
-function CardContent({children, className = ''}: {children: React.ReactNode; className?: string}) {
-  return <div className={`p-4 ${className}`}>{children}</div>;
-}
-function Button({children, variant, size, asChild, ...props}: {children: React.ReactNode; variant?: string; size?: string; asChild?: boolean; props?: any}) {
-  return <button {...props} className="border px-3 py-1 rounded-md bg-white hover:bg-gray-100">{children}</button>;
-}
+import {Card, CardContent} from '@/components/ui/card';
+import {Button} from '@/components/ui/button';
 
 const timelineEvents = [
   {id: 'policy', year: 2025, category: 'Government', color: 'green-500', title: 'AI Policy Research', description: 'AI policy research at [X]'},
@@ -78,32 +70,79 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold">Timeline</h2>
-        <Accordion type="single" collapsible className="w-full">
-          {sortedEvents.map(event => (
-            <AccordionItem key={event.id} value={event.id}>
-              <AccordionTrigger className="text-lg">{event.title}</AccordionTrigger>
-              <AccordionContent>
-                <p className="text-sm text-gray-700">{event.description}</p>
-                {event.year ? (
-                  <p className="text-sm text-gray-500">Year: {event.year}</p>
-                ) : (
-                  <p className="text-sm text-gray-500">
-                    {event.start} - {event.end}
-                  </p>
-                )}
-                <a
-                  className="text-sm text-blue-600 hover:underline"
-                  href={`https://github.com/medhya-goel/${event.id}`}
-                  target="_blank" rel="noopener noreferrer"
+      <section className="flex space-x-8">
+        {/* Timeline Section */}
+        <div className="relative flex flex-col items-start pl-6">
+          {/* Vertical Line */}
+          <div className="absolute left-2 top-0 h-full w-0.5 bg-border"></div>
+
+          {/* Timeline Events */}
+          {sortedEvents.map((event, index) => {
+            const isYearlyEvent = event.year !== undefined;
+            const eventYear = event.year || event.start || 0;
+
+            return (
+              <div key={event.id} className="relative mb-6 w-full">
+                {/* Timeline Circle */}
+                <div className="absolute left-[-9px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-background shadow">
+                  <div
+                    className="h-2 w-2 rounded-full"
+                    style={{backgroundColor: event.color === 'green-500' ? '#22c55e' : event.color === 'blue-500' ? '#3b82f6' : event.color === 'red-500' ? '#ef4444' : '#000'}}
+                  />
+                </div>
+
+                {/* Event Content */}
+                <div
+                  className={`ml-6 rounded-md p-4 shadow-sm transition-shadow duration-200 hover:shadow-md ${expandedId === event.id ? 'shadow-md' : ''}`}
+                  onMouseEnter={() => setHoveredEvent(event)}
+                  onMouseLeave={() => setHoveredEvent(null)}
                 >
-                  View on GitHub
-                </a>
-              </AccordionContent>
-            </AccordionItem>
+                  <h3 className="text-lg font-semibold">{event.title}</h3>
+                  <p className="text-sm text-muted-foreground">{event.description}</p>
+                  {isYearlyEvent ? (
+                    <p className="mt-1 text-sm text-muted-foreground">Year: {eventYear}</p>
+                  ) : (
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      {event.start} - {event.end}
+                    </p>
+                  )}
+                  <a
+                    className="mt-2 block text-sm text-blue-600 hover:underline"
+                    href={`https://github.com/medhya-goel/${event.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View on GitHub
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Project Showcase */}
+        <div className="flex-1 max-h-[500px] overflow-y-auto space-y-6 pr-2">
+          {sortedEvents.map(event => (
+            <div
+              key={event.id}
+              ref={el => projectRefs.current[event.id] = el}
+              className={`transition-all duration-300 cursor-pointer ${expandedId === event.id ? 'bg-opacity-10 p-4 rounded-lg shadow' : ''}`}
+              onClick={() => handleClick(event.id)}
+            >
+              <Card>
+                <CardContent className="p-4 space-y-2">
+                  <h3 className="text-lg font-medium">{event.title}</h3>
+                  <p className="text-sm text-muted-foreground">{event.description}</p>
+                  <a
+                    className="text-sm text-blue-600 hover:underline"
+                    href={`https://github.com/medhya-goel/${event.id}`}
+                    target="_blank" rel="noopener noreferrer"
+                  >View on GitHub</a>
+                </CardContent>
+              </Card>
+            </div>
           ))}
-        </Accordion>
+        </div>
       </section>
 
       <section className="space-y-6">
