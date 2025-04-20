@@ -7,14 +7,11 @@
     "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
     "genkit:watch": "genkit start -- tsx --watch src/ai/dev.ts",
     "build": "next build",
-    "export": "next export",
-    "predeploy": "npm run build && npm run export",
     "deploy": "gh-pages -d out",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "predeploy": "npm run build",
-    "deploy": "next export && touch out/.nojekyll && git add out/ && git commit -m \"Deploy to GitHub Pages\" && git subtree push --prefix out origin gh-pages"
+    "predeploy": "npm run build"
   },
   "dependencies": {
     "@genkit-ai/googleai": "^1.0.4",
