@@ -1,5 +1,4 @@
-# Firebase Studio
+# Personal website
 
-This is a NextJS starter in Firebase Studio.
-
-To get started, take a look at src/app/page.tsx.
+Frontend designed with the help of ChatGPT, deployed/debugged with Firebase Studio. 
+An excuse to play around with the latest AI codegen tools + upgrade my personal website :)  
