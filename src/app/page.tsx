@@ -156,11 +156,6 @@ export default function HomePage() {
                   <CardContent className="p-4 space-y-2">
                     <h3 className="text-lg font-medium">{event.job} @ {event.title}</h3>
                     <p className="text-sm text-muted-foreground">{event.description}</p>
-                    <a
-                      className="text-sm text-blue-600 hover:underline"
-                      href={`https://github.com/medhya-goel/${event.id}`}
-                      target="_blank" rel="noopener noreferrer"
-                    >View on GitHub</a>
                   </CardContent>
                 </Card>
               </div>
