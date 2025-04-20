@@ -11,49 +11,54 @@ const timelineEvents = [
   {
     id: 'policy',
     year: 2025,
-    month: 'Jan',
+    month: 'winter',
     category: 'Government',
     color: 'green-500',
-    title: 'AI Policy Research',
-    description: 'AI policy research at [X]',
+    job: 'software',
+    title: 'Stripe',
+    description: 'moved & stored $$$',
   },
   {
     id: 'hackathon',
     year: 2024,
-    month: 'Dec',
+    month: 'summer',
     category: 'Other',
     color: 'red-500',
-    title: 'Evacuation Route Planner',
-    description: 'AI hackathons and consumer tools',
+    job: 'policy + software',
+    title: 'Cybersecurity & Infrastructure Security Agency',
+    description: 'worked on an Executive Order and Crossfeed',
   },
   {
     id: 'lab',
-    startYear: 2023,
-    startMonth: 'Jun',
-    endYear: 2024,
-    endMonth: 'Dec',
+    year: 2023,
+    month: 'summer',
     category: 'LegalTech',
     color: 'blue-500',
-    title: 'Public Interest Tech Lab',
-    description: 'Co-founded Public Interest Tech Lab',
+    job: 'software',
+    title: 'Rasa',
+    description: 'automated criminal records expungement',
   },
   {
     id: 'cisa',
-    year: 2023,
-    month: 'Jan',
+    year: 2024,
+    month: 'Summer',
     category: 'Government',
     color: 'green-500',
-    title: 'CISA Cybersecurity',
-    description: 'Cybersecurity work at CISA',
+    job: 'research',
+    title: 'Stanford Internet Observatory',
+    description: 'studied social media activity + bot networks',
   },
   {
     id: 'sbom',
-    year: 2022,
-    month: 'Jun',
+    startYear: 2020,
+    startMonth: ' ',
+    endYear: 2022,
+    endMonth: ' ',
     category: 'LegalTech',
     color: 'blue-500',
-    title: 'GitHub SBOM',
-    description: 'Interned at XYZ Legal AI',
+    job: 'journalism',
+    title: 'city paper',
+    description: 'Automated criminal court records expungement',
   },
 ];
 
@@ -88,8 +93,8 @@ export default function HomePage() {
   const getTimelineLabel = (event: any) => {
     if (event.year && event.month) {
       return `${event.month}, ${event.year}`;
-    } else if (event.startYear && event.startMonth && event.endYear && event.endMonth) {
-      return `${event.startMonth}, ${event.startYear} - ${event.endMonth}, ${event.endYear}`;
+    } else if (event.startYear && event.endYear) {
+      return `${event.startYear} - ${event.endYear}`;
     }
     return 'Unknown Date';
   };
@@ -97,15 +102,14 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-[#fdfcf7] text-[#3a3a3a] font-serif px-6 py-12 md:px-20 max-w-6xl mx-auto space-y-16">
       <section className="space-y-4">
-        <h1 className="text-4xl md:text-5xl font-bold">Medhya Goel</h1>
-        <p className="text-lg max-w-2xl">
-          AI + Systems student at Stanford. I’m excited by the intersection of technology,
-          governance, and human empowerment — building across legaltech, public interest,
-          and AI policy.
+        <h1 className="text-4xl md:text-5xl font-bold">medhya goel</h1>
+        <p className="text-lg max-w-2xl"> ai & public policy @ stanford </p>
+          <p className="text-lg max-w-2xl"> building tools that mitigate the effects of broken policy (implementation) of good policy.
+          
         </p>
         <div className="flex space-x-4 pt-2">
           <Button variant="outline" size="icon" asChild>
-            <a href="https://github.com/medhya-goel" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/medhyaGoel" target="_blank" rel="noopener noreferrer">
               <Github className="h-5 w-5" />
             </a>
           </Button>
@@ -129,10 +133,10 @@ export default function HomePage() {
                     className="text-xl font-bold text-slate-900 hover:text-blue-500 focus:outline-none"
                     onClick={() => handleClick(event.id)}
                   >
-                    {event.title}
+                    {event.job}
                   </button>
                 </div>
-                <div className="text-slate-500">{event.description}</div>
+                <div className="text-slate-500">{event.title}</div>
               </div>
             ))}
           </div>
@@ -150,7 +154,7 @@ export default function HomePage() {
               >
                 <Card>
                   <CardContent className="p-4 space-y-2">
-                    <h3 className="text-lg font-medium">{event.title}</h3>
+                    <h3 className="text-lg font-medium">{event.job} @ {event.title}</h3>
                     <p className="text-sm text-muted-foreground">{event.description}</p>
                     <a
                       className="text-sm text-blue-600 hover:underline"
