@@ -164,22 +164,6 @@ export default function HomePage() {
           </ScrollArea>
         </div>
       </section>
-
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold">Bookshelf</h2>
-        <div className="w-full flex justify-center gap-2 items-end h-[280px]">
-          {['Gödel, Escher, Bach', 'The Master and His Emissary', 'The Alignment Problem', 'Invisible Women', 'Thinking, Fast and Slow', 'This is How You Lose the Time War'].map((title, index) => (
-            <div
-              key={index}
-              className="w-10 h-[240px] rounded-md bg-white border border-gray-200 shadow-sm flex items-center justify-center px-1 hover:shadow-md transition"
-            >
-              <span className="text-xs font-medium text-gray-800" style={{writingMode: 'vertical-rl', transform: 'rotate(180deg)'}}>
-                {title}
-              </span>
-            </div>
-          ))}
-        </div>
-      </section>
     </main>
   );
 }
