@@ -72,52 +72,17 @@ export default function HomePage() {
 
       <section className="flex space-x-8">
         {/* Timeline Section */}
-        <div className="relative flex flex-col items-start pl-6">
-          {/* Vertical Line */}
-          <div className="absolute left-2 top-0 h-full w-0.5 bg-border"></div>
-
-          {/* Timeline Events */}
-          {sortedEvents.map((event, index) => {
-            const isYearlyEvent = event.year !== undefined;
-            const eventYear = event.year || event.start || 0;
-
-            return (
-              <div key={event.id} className="relative mb-6 w-full">
-                {/* Timeline Circle */}
-                <div className="absolute left-[-9px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-background shadow">
-                  <div
-                    className="h-2 w-2 rounded-full"
-                    style={{backgroundColor: event.color === 'green-500' ? '#22c55e' : event.color === 'blue-500' ? '#3b82f6' : event.color === 'red-500' ? '#ef4444' : '#000'}}
-                  />
-                </div>
-
-                {/* Event Content */}
-                <div
-                  className={`ml-6 rounded-md p-4 shadow-sm transition-shadow duration-200 hover:shadow-md ${expandedId === event.id ? 'shadow-md' : ''}`}
-                  onMouseEnter={() => setHoveredEvent(event)}
-                  onMouseLeave={() => setHoveredEvent(null)}
-                >
-                  <h3 className="text-lg font-semibold">{event.title}</h3>
-                  <p className="text-sm text-muted-foreground">{event.description}</p>
-                  {isYearlyEvent ? (
-                    <p className="mt-1 text-sm text-muted-foreground">Year: {eventYear}</p>
-                  ) : (
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      {event.start} - {event.end}
-                    </p>
-                  )}
-                  <a
-                    className="mt-2 block text-sm text-blue-600 hover:underline"
-                    href={`https://github.com/medhya-goel/${event.id}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View on GitHub
-                  </a>
-                </div>
+        <div class="-my-6 w-2/3">
+          {sortedEvents.map((event, index) => (
+            <div key={index} className="relative pl-8 sm:pl-32 py-6 group">
+              <div className="font-caveat font-medium text-2xl text-teal-500 mb-1 sm:mb-0">{event.category}</div>
+              <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-border sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-teal-600 after:border-4 after:box-content after:border-[#fdfcf7] after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
+                <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-20 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">{event.year || `${event.start} - ${event.end}`}</time>
+                <div className="text-xl font-bold text-slate-900">{event.title}</div>
               </div>
-            );
-          })}
+              <div className="text-slate-500">{event.description}</div>
+            </div>
+          ))}
         </div>
 
         {/* Project Showcase */}
