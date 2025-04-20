@@ -145,7 +145,7 @@ export default function HomePage() {
               <div
                 key={event.id}
                 ref={el => projectRefs.current[event.id] = el}
-                className={`transition-all duration-300 cursor-pointer ${expandedId === event.id ? 'bg-opacity-10 p-4 rounded-lg shadow' : ''}`}
+                className={`transition-all duration-300 cursor-pointer ${expandedId === event.id ? 'bg-green-100 p-4 rounded-lg shadow' : ''}`}
                 onClick={() => handleClick(event.id)}
               >
                 <Card>
