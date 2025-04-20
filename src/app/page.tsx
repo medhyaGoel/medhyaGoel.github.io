@@ -119,7 +119,7 @@ export default function HomePage() {
 
       <section className="flex space-x-8">
         {/* Timeline Section */}
-        <div className="w-2/3">
+        <div className="w-1/2">
           <div className="-my-6">
             {sortedEvents.map((event, index) => (
               <div key={index} className="relative pl-8 sm:pl-32 py-6 group">
@@ -139,7 +139,7 @@ export default function HomePage() {
         </div>
 
         {/* Project Showcase */}
-        <div className="flex-1 max-h-[500px] space-y-6 pr-2">
+        <div className="w-1/2 max-h-[500px] space-y-6 pr-2">
           <ScrollArea className="h-full">
             {sortedEvents.map(event => (
               <div
