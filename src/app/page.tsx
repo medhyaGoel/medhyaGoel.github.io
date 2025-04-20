@@ -16,7 +16,7 @@ const timelineEvents = [
     color: 'green-500',
     job: 'software',
     title: 'Stripe',
-    description: 'moved & stored $$$',
+    description: 'moved & stored $$$.',
   },
   {
     id: 'hackathon',
@@ -26,7 +26,11 @@ const timelineEvents = [
     color: 'red-500',
     job: 'policy + software',
     title: 'Cybersecurity & Infrastructure Security Agency',
-    description: 'worked on an Executive Order and Crossfeed',
+    description: (
+      <>
+        worked on an Executive Order + <a href="https://github.com/cisagov/crossfeed/" className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">Crossfeed</a>.
+      </>
+    ),
   },
   {
     id: 'lab',
@@ -36,7 +40,7 @@ const timelineEvents = [
     color: 'blue-500',
     job: 'software',
     title: 'Rasa',
-    description: 'automated criminal records expungement',
+    description: 'automated criminal records expungement.',
   },
   {
     id: 'cisa',
@@ -46,7 +50,11 @@ const timelineEvents = [
     color: 'green-500',
     job: 'research',
     title: 'Stanford Internet Observatory',
-    description: 'studied social media activity + bot networks',
+    description: (
+      <>
+        studied <a href="https://github.com/stanfordio/truthbrush" className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">social media activity</a> + bot networks.
+      </>
+    ),
   },
   {
     id: 'sbom',
@@ -58,7 +66,12 @@ const timelineEvents = [
     color: 'blue-500',
     job: 'journalism',
     title: 'city paper',
-    description: 'Automated criminal court records expungement',
+    description: (
+      <>
+        helped found <a href="https://sammamishindependent.com/" className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">city paper</a>. published in <a href="https://www.seattletimes.com/education-lab/student-voices-15-seconds-of-infamy-football-misinformation-and-death-threats/
+" className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">The Seattle Times</a>. covered everything from murder to city politics.
+      </>
+    ),
   },
 ];
 
